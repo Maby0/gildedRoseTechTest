@@ -1,10 +1,16 @@
-var {Shop, Item} = require('../src/gilded_rose.js');
+var {Shop, Item} = require('../src/gildedRoseRefactored.js');
+
 describe("Gilded Rose", function() {
+  beforeEach(function() {
+    
+  })
 
   it("should foo", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 0) ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].name).toEqual("fixme");
+    const basicItem = new Item("item", 1, 1)
+    const gildedRose = new Shop([basicItem]);
+    gildedRose.updateQuality()
+    expect(gildedRose.items[0].sellIn).toEqual(0);
+    expect(gildedRose.items[0].quality).toEqual(0);
   });
 
 });

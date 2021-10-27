@@ -1,5 +1,6 @@
 const minimumQuality = 0,
-  maximumQuality = 50;
+  maximumQuality = 50,
+  noSellByDate = 0;
 
 class Item {
   constructor(name, sellIn, quality){
@@ -30,7 +31,7 @@ class NormalItem extends Item {
   }
 
   _correctMinimumQuality() {
-    if (this.quality < 0) this.quality = minimumQuality;
+    if (this.quality < minimumQuality) this.quality = minimumQuality;
   }
 }
 
@@ -46,12 +47,24 @@ class AgedBrie extends Item {
   }
 
   _correctMaximumQuality() {
-    if (this.quality > 50) this.quality = maximumQuality;
+    if (this.quality > maximumQuality) this.quality = maximumQuality;
+  }
+}
+
+class Sulfuras extends Item {
+  constructor(name, sellIn, quality){
+    super(name, sellIn, quality)
+  }
+
+  updateItemQuality() {
+    if (this.sellIn !== 0) this.sellIn = noSellByDate;
+    if (this.quality > maximumQuality) this.quality = maximumQuality;
   }
 }
 
 module.exports = {
   Item,
   NormalItem,
-  AgedBrie
+  AgedBrie,
+  Sulfuras
 }

@@ -41,19 +41,24 @@ describe("Gilded Rose", function() {
 
 describe("NormalItem < Item", function() {
   beforeEach(function() {
-    normalItem = new NormalItem('normalItem', 5, 5)
+    normal = new NormalItem('normalItem', 5, 5)
   })
 
   describe("updateQuality", function() {
     beforeEach(function() {
-      normalItem.updateQuality();
+      normal.updateItemQuality();
     })
 
     it("reduces sellIn by 1", function() {
-      expect(normalItem.sellIn).toEqual(4);
+      expect(normal.sellIn).toEqual(4);
     })
     it("reduces quality by 1 if it's > 0", function() {
-      expect(normalItem.quality).toEqual(4);
+      expect(normal.quality).toEqual(4);
+    })
+    it("does not reduce item quality below 0", function() {
+      normal.quality = 0;
+      normal.updateItemQuality();
+      expect(normal.quality).toEqual(0);
     })
   })
 })

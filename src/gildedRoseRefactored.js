@@ -11,10 +11,12 @@ class NormalItem extends Item {
     super(name, sellIn, quality)
   }
 
-  updateQuality() {
+  updateItemQuality() {
     if (this.quality > 0) {
-      this.sellIn -= 1
-      this.quality -= 1
+      this.sellIn -= 1;
+      this.quality -= 1;
+    } else {
+      this.sellIn -= 1;
     }
   }
 }

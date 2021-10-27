@@ -3,7 +3,7 @@ const minimumQuality = 0,
   noSellByDate = 0;
 
 class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
@@ -11,7 +11,7 @@ class Item {
 }
 
 class NormalItem extends Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     super(name, sellIn, quality)
   }
 
@@ -36,7 +36,7 @@ class NormalItem extends Item {
 }
 
 class AgedBrie extends Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     super(name, sellIn, quality)
   }
 
@@ -52,8 +52,8 @@ class AgedBrie extends Item {
 }
 
 class Sulfuras extends Item {
-  constructor(name, sellIn, quality){
-    super(name, sellIn, quality)
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
   }
 
   updateItemQuality() {
@@ -62,9 +62,23 @@ class Sulfuras extends Item {
   }
 }
 
+class BackstagePass extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  updateItemQuality() {
+    if (this.sellIn > 10) {
+      this.sellIn -= 1;
+      this.quality += 1;
+    } 
+  }
+}
+
 module.exports = {
   Item,
   NormalItem,
   AgedBrie,
-  Sulfuras
+  Sulfuras,
+  BackstagePass
 }

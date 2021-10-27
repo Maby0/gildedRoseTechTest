@@ -10,5 +10,10 @@ describe("BackstagePass < Item", function() {
       pass.updateItemQuality();
       expect(pass.sellIn).toEqual(14);
     })
+    it("when sellIn greater than 5 & 10 or lower, quality increases by 2", function() {
+      pass.sellIn = 10;
+      pass.updateItemQuality();
+      expect(pass.quality).toEqual(17);
+    })
   })
 })

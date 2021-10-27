@@ -11,13 +11,25 @@ class NormalItem extends Item {
     super(name, sellIn, quality)
   }
 
+  static lowestPossibleQuality = 0;
+
   updateItemQuality() {
-    if (this.quality > 0) {
+    if (this._outOfDate()) {
       this.sellIn -= 1;
-      this.quality -= 1;
+      this.quality -= 2;
     } else {
       this.sellIn -= 1;
+      this.quality -= 1;
     }
+    this._correctNegativeQuality()
+  }
+
+  _outOfDate() {
+    return this.sellIn <= 0;
+  }
+
+  _correctNegativeQuality() {
+    if (this.quality < 0) this.quality = NormalItem.lowestPossibleQuality;
   }
 }
 

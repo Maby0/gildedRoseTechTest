@@ -20,5 +20,10 @@ describe("BackstagePass < Item", function() {
       pass.updateItemQuality();
       expect(pass.quality).toEqual(18);
     })
+    it("when sellIn is 0 or lower, quality is reduced to 0", function() {
+      pass.sellIn = 0;
+      pass.updateItemQuality();
+      expect(pass.quality).toEqual(0);
+    })
   })
 })

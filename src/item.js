@@ -1,4 +1,5 @@
-const lowestPossibleQuality = 0;
+const minimumQuality = 0,
+  maximumQuality = 50;
 
 class Item {
   constructor(name, sellIn, quality){
@@ -21,17 +22,15 @@ class NormalItem extends Item {
       this.sellIn -= 1;
       this.quality -= 1;
     }
-    this._correctNegativeQuality()
+    this._correctMinimumQuality()
   }
-
-  
 
   _outOfDate() {
     return this.sellIn <= 0;
   }
 
-  _correctNegativeQuality() {
-    if (this.quality < 0) this.quality = lowestPossibleQuality;
+  _correctMinimumQuality() {
+    if (this.quality < 0) this.quality = minimumQuality;
   }
 }
 
@@ -41,7 +40,13 @@ class AgedBrie extends Item {
   }
 
   updateItemQuality() {
-    
+    this.sellIn -= 1
+    this.quality += 1
+    this._correctMaximumQuality()
+  }
+
+  _correctMaximumQuality() {
+    if (this.quality > 50) this.quality = maximumQuality;
   }
 }
 

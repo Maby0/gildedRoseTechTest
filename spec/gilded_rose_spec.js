@@ -1,4 +1,4 @@
-var {Shop, Item} = require('../src/gildedRoseRefactored.js');
+var {Shop, Item, NormalItem} = require('../src/gildedRoseRefactored.js');
 
 describe("Gilded Rose", function() {
   beforeEach(function() {
@@ -12,7 +12,7 @@ describe("Gilded Rose", function() {
       gildedRose.updateQuality();
       expect(gildedRose.items[0].quality).toEqual(0);
     })
-    
+
     describe("normal items", function() {
       describe('when sellIn is >= 0', function() {  
         beforeEach(function() {
@@ -35,7 +35,25 @@ describe("Gilded Rose", function() {
           expect(gildedRose.items[0].quality).toEqual(3);
         })
       })
-      
     })
   })
 });
+
+describe("NormalItem < Item", function() {
+  beforeEach(function() {
+    normalItem = new NormalItem('normalItem', 5, 5)
+  })
+
+  describe("updateQuality", function() {
+    beforeEach(function() {
+      normalItem.updateQuality();
+    })
+
+    it("reduces sellIn by 1", function() {
+      expect(normalItem.sellIn).toEqual(4);
+    })
+    it("reduces quality by 1 if it's > 0", function() {
+      expect(normalItem.quality).toEqual(4);
+    })
+  })
+})

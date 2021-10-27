@@ -13,5 +13,10 @@ describe("AgedBrie < Item", function() {
     it("increases quality by 1", function() {
       expect(agedBrie.quality).toEqual(6);
     })
+    it("does not increase item quality beyond 50", function() {
+      agedBrie.quality = 50;
+      agedBrie.updateItemQuality();
+      expect(agedBrie.quality).toEqual(50);
+    })
   })
 })

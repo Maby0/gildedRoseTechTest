@@ -1,37 +1,4 @@
-class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
-
-class NormalItem extends Item {
-  constructor(name, sellIn, quality){
-    super(name, sellIn, quality)
-  }
-
-  static lowestPossibleQuality = 0;
-
-  updateItemQuality() {
-    if (this._outOfDate()) {
-      this.sellIn -= 1;
-      this.quality -= 2;
-    } else {
-      this.sellIn -= 1;
-      this.quality -= 1;
-    }
-    this._correctNegativeQuality()
-  }
-
-  _outOfDate() {
-    return this.sellIn <= 0;
-  }
-
-  _correctNegativeQuality() {
-    if (this.quality < 0) this.quality = NormalItem.lowestPossibleQuality;
-  }
-}
+const { NormalItem } = require('./item');
 
 class Shop {
   constructor(items=[]){
@@ -101,7 +68,5 @@ class Shop {
   }
 }
 module.exports = {
-  Item,
-  NormalItem,
   Shop
 }

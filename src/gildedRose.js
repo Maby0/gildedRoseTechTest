@@ -1,10 +1,3 @@
-const { Item, 
-  NormalItem, 
-  AgedBrie, 
-  Sulfuras,
-  BackstagePass
-} = require('./item');
-
 class Shop {
   constructor(items=[]){
     this.items = items;

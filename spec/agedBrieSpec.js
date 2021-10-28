@@ -1,4 +1,4 @@
-const { AgedBrie } = require('../src/item');
+const { AgedBrie } = require('../src/agedBrie');
 
 describe("AgedBrie < Item", function() {
   beforeEach(function() {

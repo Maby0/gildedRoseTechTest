@@ -1,4 +1,4 @@
-const { BackstagePass } = require('../src/item');
+const { BackstagePass } = require('../src/backstagePass');
 
 describe("BackstagePass < Item", function() {
   beforeEach(function() {

@@ -1,4 +1,4 @@
-const { Sulfuras } = require('../src/item');
+const { Sulfuras } = require('../src/sulfuras');
 
 describe("Sulfuras < Item", function() {
   beforeEach(function() {

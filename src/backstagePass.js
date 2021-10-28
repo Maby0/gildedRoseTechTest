@@ -1,25 +1,25 @@
 const { Item, minimumQuality, maximumQuality } = require('./item');
 
-
-class NormalItem extends Item {
+class BackstagePass extends Item {
   constructor(name, sellIn, quality) {
-    super(name, sellIn, quality)
+    super(name, sellIn, quality);
   }
 
   updateItemQuality() {
-    if (this._outOfDate()) {
+    if (this.sellIn > 10) {
       this.sellIn -= 1;
-      this.quality -= 2;
-    } else {
+      this.quality += 1;
+    } else if (this.sellIn <= 10 && this.sellIn > 5) {
       this.sellIn -= 1;
-      this.quality -= 1;
+      this.quality += 2;
+    } else if (this.sellIn <= 0) {
+      this.sellIn -= 1;
+      this.quality = 0;
+    } else if (this.sellIn <= 5) {
+      this.sellIn -= 1;
+      this.quality += 3;
     }
-    this._correctMinimumQuality();
     this._correctMaximumQuality();
-  }
-
-  _outOfDate() {
-    return this.sellIn <= 0;
   }
 
   _correctMinimumQuality() {
@@ -31,4 +31,4 @@ class NormalItem extends Item {
   }
 }
 
-module.exports = { NormalItem }
+module.exports = { BackstagePass }

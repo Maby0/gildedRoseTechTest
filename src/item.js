@@ -10,95 +10,9 @@ class Item {
   }
 }
 
-class NormalItem extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality)
-  }
-
-  updateItemQuality() {
-    if (this._outOfDate()) {
-      this.sellIn -= 1;
-      this.quality -= 2;
-    } else {
-      this.sellIn -= 1;
-      this.quality -= 1;
-    }
-    this._correctMinimumQuality()
-  }
-
-  _outOfDate() {
-    return this.sellIn <= 0;
-  }
-
-  _correctMinimumQuality() {
-    if (this.quality < minimumQuality) this.quality = minimumQuality;
-  }
-}
-
-class AgedBrie extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality)
-  }
-
-  updateItemQuality() {
-    this.sellIn -= 1
-    this.quality += 1
-    this._correctMaximumQuality()
-  }
-
-  _correctMaximumQuality() {
-    if (this.quality > maximumQuality) this.quality = maximumQuality;
-  }
-  _correctMinimumQuality() {
-    if (this.quality < minimumQuality) this.quality = minimumQuality;
-  }
-}
-
-class Sulfuras extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality);
-  }
-
-  updateItemQuality() {
-    if (this.sellIn !== 0) this.sellIn = noSellByDate;
-    if (this.quality > maximumQuality) this.quality = maximumQuality;
-  }
-}
-
-class BackstagePass extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality);
-  }
-
-  updateItemQuality() {
-    if (this.sellIn > 10) {
-      this.sellIn -= 1;
-      this.quality += 1;
-    } else if (this.sellIn <= 10 && this.sellIn > 5) {
-      this.sellIn -= 1;
-      this.quality += 2;
-    } else if (this.sellIn <= 0) {
-      this.sellIn -= 1;
-      this.quality = 0;
-    } else if (this.sellIn <= 5) {
-      this.sellIn -= 1;
-      this.quality += 3;
-    }
-    this._correctMaximumQuality();
-  }
-
-  _correctMaximumQuality() {
-    if (this.quality > maximumQuality) this.quality = maximumQuality;
-  }
-}
-
 module.exports = {
   Item,
   minimumQuality,
   maximumQuality,
-  noSellByDate,
-  NormalItem,
-  AgedBrie,
-  Sulfuras,
-  BackstagePass
+  noSellByDate
 }

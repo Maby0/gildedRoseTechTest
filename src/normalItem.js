@@ -7,13 +7,9 @@ class NormalItem extends Item {
   }
 
   updateItemQuality() {
-    if (this._outOfDate()) {
-      this.sellIn -= 1;
-      this.quality -= 2;
-    } else {
-      this.sellIn -= 1;
-      this.quality -= 1;
-    }
+    this.sellIn --;
+    this.quality --;
+    if(this._outOfDate()) this.quality --;
     this._correctMinimumQuality();
     this._correctMaximumQuality();
   }

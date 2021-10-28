@@ -49,6 +49,9 @@ class AgedBrie extends Item {
   _correctMaximumQuality() {
     if (this.quality > maximumQuality) this.quality = maximumQuality;
   }
+  _correctMinimumQuality() {
+    if (this.quality < minimumQuality) this.quality = minimumQuality;
+  }
 }
 
 class Sulfuras extends Item {
@@ -81,11 +84,19 @@ class BackstagePass extends Item {
       this.sellIn -= 1;
       this.quality += 3;
     }
+    this._correctMaximumQuality();
+  }
+
+  _correctMaximumQuality() {
+    if (this.quality > maximumQuality) this.quality = maximumQuality;
   }
 }
 
 module.exports = {
   Item,
+  minimumQuality,
+  maximumQuality,
+  noSellByDate,
   NormalItem,
   AgedBrie,
   Sulfuras,

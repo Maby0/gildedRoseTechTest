@@ -1,4 +1,4 @@
-const { NormalItem } = require('../src/item');
+const { NormalItem } = require('../src/normalItem');
 
 describe("NormalItem < Item", function() {
   beforeEach(function() {
@@ -29,6 +29,11 @@ describe("NormalItem < Item", function() {
       normal.sellIn = 0;
       normal.updateItemQuality();
       expect(normal.quality).toEqual(0);
+    })
+    it("cannot exceed highest item quality (50)", function() {
+      normal.quality = 55;
+      normal.updateItemQuality();
+      expect(normal.quality).toEqual(50);
     })
   })
 })

@@ -25,5 +25,10 @@ describe("BackstagePass < Item", function() {
       pass.updateItemQuality();
       expect(pass.quality).toEqual(0);
     })
+    it("item quality cannot exceed maximum quality (50)", function() {
+      pass.quality = 50;
+      pass.updateItemQuality();
+      expect(pass.quality).toEqual(50);
+    })
   })
 })

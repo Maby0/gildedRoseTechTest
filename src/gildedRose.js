@@ -1,3 +1,9 @@
+const
+  { NormalItem } = require('./normalItem'),
+  { AgedBrie } = require('./agedBrie'),
+  { Sulfuras } = require('./sulfuras'),
+  { BackstagePass } = require('./backstagePass');
+
 class Shop {
   constructor(items=[]){
     this.items = items;
@@ -12,5 +18,9 @@ class Shop {
 }
 
 module.exports = {
-  Shop
+  Shop,
+  NormalItem,
+  AgedBrie,
+  Sulfuras,
+  BackstagePass
 }

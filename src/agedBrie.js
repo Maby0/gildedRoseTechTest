@@ -6,8 +6,9 @@ class AgedBrie extends Item {
   }
 
   updateItemQuality() {
-    this.sellIn -= 1
-    this.quality += 1
+    this.sellIn --;
+    this.quality ++;
+    this._correctMinimumQuality();
     this._correctMaximumQuality()
   }
 

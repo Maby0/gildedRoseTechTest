@@ -18,5 +18,10 @@ describe("AgedBrie < Item", function() {
       agedBrie.updateItemQuality();
       expect(agedBrie.quality).toEqual(50);
     })
+    it("can not have a quality lower than 0", function() {
+      agedBrie.quality = -5;
+      agedBrie.updateItemQuality();
+      expect(agedBrie.quality).toEqual(0);
+    })
   })
 })

@@ -6,29 +6,17 @@ class BackstagePass extends Item {
   }
 
   updateItemQuality() {
-    if (this._eventNotImminent()) {
-      this.sellIn -= 1;
-      this.quality += 1;
-    } else if (this._eventSoon()) {
-      this.sellIn -= 1;
-      this.quality += 2;
-    } else if (this._eventImminent()) {
-      this.sellIn -= 1;
-      this.quality += 3;
-    } else if (this._eventBeen()) {
-      this.sellIn -= 1;
-      this.quality = minimumQuality;
-    }
+    this.sellIn --;
+    this.quality ++;
+    if (this._eventSoon()) this.quality ++;
+    if (this._eventImminent()) this.quality ++;
+    if (this._eventBeen()) this.quality = minimumQuality;
     this._correctMinimumQuality();
     this._correctMaximumQuality();
   }
 
-  _eventNotImminent() {
-    return this.sellIn > 10;
-  }
-
   _eventSoon() {
-    return this.sellIn <= 10 && this.sellIn > 5;
+    return this.sellIn <= 10;
   }
 
   _eventImminent() {

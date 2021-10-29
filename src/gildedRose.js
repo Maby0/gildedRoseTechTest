@@ -2,7 +2,8 @@ const
   { NormalItem } = require('./normalItem'),
   { AgedBrie } = require('./agedBrie'),
   { Sulfuras } = require('./sulfuras'),
-  { BackstagePass } = require('./backstagePass');
+  { BackstagePass } = require('./backstagePass'),
+  { ConjuredItem } = require('./conjuredItem');
 
 class Shop {
   constructor(items=[]){
@@ -22,5 +23,6 @@ module.exports = {
   NormalItem,
   AgedBrie,
   Sulfuras,
-  BackstagePass
+  BackstagePass,
+  ConjuredItem
 }

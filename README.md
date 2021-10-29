@@ -5,19 +5,27 @@ This tech test involved refactoring some legacy code, increasing readability and
 ### To run
 
 * Clone this repository `git clone https://github.com/Maby0/bankTechTest/`
+
 * Install dependancies `npm install`
-* Open the node REPL in your terminal while in the project's root directory and paste in the following line `const { Shop, NormalItem, AgedBrie, Sulfuras, BackstagePass, ConjuredItem } = require('./src/gildedRose');`
+
+* Open the node REPL in your terminal while in the project's root directory and paste in the following line:
+  * `const { Shop, NormalItem, AgedBrie, Sulfuras, BackstagePass, ConjuredItem } = require('./src/gildedRose');`
+  
 * Create the items the shop will sell:
-  * `let normalItem1 = new NormalItem("Bread", 5, 5);`
-  * `let normalItem2 = new NormalItem("Milk", 2, 10);`
-  * `let agedBrie = new AgedBrie("Aged Brie", 5, 10);`
-  * `let sulfuras = new Sulfuras("Sulfuras, Hand of Ragnaros", 5, 55);`
-  * `let backstagePass = new BackstagePass("Backstage Pass", 12, 25);`
-  * `let conjuredItem = new ConjuredItem("Mana Biscuit", 5, 10);`
+  ```
+   let normalItem1 = new NormalItem("Bread", 5, 5);
+   let normalItem2 = new NormalItem("Milk", 2, 10);
+   let agedBrie = new AgedBrie("Aged Brie", 5, 10);
+   let sulfuras = new Sulfuras("Sulfuras, Hand of Ragnaros", 5, 55);
+   let backstagePass = new BackstagePass("Backstage Pass", 12, 25);
+   let conjuredItem = new ConjuredItem("Mana Biscuit", 5, 10);
+  ```
 * Create the shop instance and pass it the items you created:
   * `const gildedRose = new Shop([normalItem1, normalItem2, agedBrie, sulfuras, backstagePass, conjuredItem]);`
+  
 * Call the items property on the shop instance(gildedRose) to ensure everything is stocked correctly:
   * `gildedRose.items`
+  
 * Call the `updateQuality()` method on the shop instance (gildedRose) once the day is up:
   * `gildedRose.updateQuality();`
 
@@ -64,8 +72,8 @@ Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) 
 
 ### Approach
 
-* As the spec restricts us from altering the Item class, I decided to approach this test by utilising class inheritance to give each Item subclass its own `.updateItemQuality()` method. 
-* By doing this, it would allow the same method to be called for each item type in the Shop's items array from the same code line (seen in gildedRose.js).
-* I have the same 2 private methods that exist in every subclass that simultaneously deal with correcting the quality update functionality and with user input edge-cases i.e. ensuring quality adheres to the boundaries specified in the spec.
-  * In an ideal world, these 2 private methods would exist in the parent class (Item), but due to the aforementioned restrictions, I believe they had to be duplicated across each subclass.
-* I left adding the ConjuredItem subclass until I'd fully restructured the code and knew that it maintained original functionality and was working as intended. This allowed me to test first-hand how the process of adding item types to the application would go. I was satisfied with the resulting process and believe that it it an  improvement over the legacy code.
+* As the spec restricts us from altering the Item class, I decided to approach this test by utilising class inheritance and making each item type a subclass of the Item class and giving each their own `.updateItemQuality()` method. 
+* By doing this, it would allow the same method to be called for each item type in the Shop's items array from the same code line (seen in gildedRose.js, line 15).
+* I have the same 2 private methods that exist in every subclass that simultaneously deal with correcting the quality update functionality and user input edge-cases i.e. ensuring quality adheres to the boundaries specified in the spec.
+  * In an ideal world, these 2 private methods would exist in the parent class (Item), but due to the aforementioned restrictions, I believe they had to be duplicated across each subclass to ensure consistency in item properties.
+* I left adding the ConjuredItem subclass until I'd fully restructured the code and knew that it maintained original functionality and was working as intended. This allowed me to test first-hand how the process of adding item types to the application would go. I was satisfied with the resulting process and believe that it it an improvement over the legacy code.

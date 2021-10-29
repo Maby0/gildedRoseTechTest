@@ -14,6 +14,15 @@ describe("ConjuredItem", function() {
       conjuredItem.updateItemQuality();
       expect(conjuredItem.quality).toEqual(8);
     })
-    
+    it("does not reduce quality below 0", function() {
+      conjuredItem.quality = 0;
+      conjuredItem.updateItemQuality();
+      expect(conjuredItem.quality).toEqual(0);
+    })
+    it("corrects quality if greater than max", function() {
+      conjuredItem.quality = 55;
+      conjuredItem.updateItemQuality();
+      expect(conjuredItem.quality).toEqual(50);
+    })
   })
 })

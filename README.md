@@ -77,3 +77,97 @@ Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) 
 * I have the same 2 private methods that exist in every subclass that simultaneously deal with correcting the quality update functionality and user input edge-cases i.e. ensuring quality adheres to the boundaries specified in the spec.
   * In an ideal world, these 2 private methods would exist in the parent class (Item), but due to the aforementioned restrictions, I believe they had to be duplicated across each subclass to ensure consistency in item properties.
 * I left adding the ConjuredItem subclass until I'd fully restructured the code and knew that it maintained original functionality and was working as intended. This allowed me to test first-hand how the process of adding item types to the application would go. I was satisfied with the resulting process and believe that it it an improvement over the legacy code.
+
+#### Original Shop class
+```
+class Shop {
+  constructor(items=[]){
+    this.items = items;
+  }
+  updateQuality() {
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if (this.items[i].quality > 0) {
+          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+            this.items[i].quality = this.items[i].quality - 1;
+          }
+        }
+      } else {
+        if (this.items[i].quality < 50) {
+          this.items[i].quality = this.items[i].quality + 1;
+          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
+            if (this.items[i].sellIn < 11) {
+              if (this.items[i].quality < 50) {
+                this.items[i].quality = this.items[i].quality + 1;
+              }
+            }
+            if (this.items[i].sellIn < 6) {
+              if (this.items[i].quality < 50) {
+                this.items[i].quality = this.items[i].quality + 1;
+              }
+            }
+          }
+        }
+      }
+      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+        this.items[i].sellIn = this.items[i].sellIn - 1;
+      }
+      if (this.items[i].sellIn < 0) {
+        if (this.items[i].name != 'Aged Brie') {
+          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
+            if (this.items[i].quality > 0) {
+              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
+                this.items[i].quality = this.items[i].quality - 1;
+              }
+            }
+          } else {
+            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+          }
+        } else {
+          if (this.items[i].quality < 50) {
+            this.items[i].quality = this.items[i].quality + 1;
+          }
+        }
+      }
+    }
+
+    return this.items;
+  }
+}
+module.exports = {
+  Item,
+  Shop
+}
+```
+
+#### Post refactoring
+```
+const
+  { NormalItem } = require('./normalItem'),
+  { AgedBrie } = require('./agedBrie'),
+  { Sulfuras } = require('./sulfuras'),
+  { BackstagePass } = require('./backstagePass'),
+  { ConjuredItem } = require('./conjuredItem');
+
+class Shop {
+  constructor(items=[]){
+    this.items = items;
+  }
+
+  updateQuality() {
+    this.items.forEach(item => {
+      item.updateItemQuality();
+    })
+    return this.items;
+  }
+}
+
+module.exports = {
+  Shop,
+  NormalItem,
+  AgedBrie,
+  Sulfuras,
+  BackstagePass,
+  ConjuredItem
+}
+```

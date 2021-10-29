@@ -2,7 +2,7 @@ const { Item, minimumQuality, maximumQuality } = require('./item');
 
 class AgedBrie extends Item {
   constructor(name, sellIn, quality) {
-    super(name, sellIn, quality)
+    super(name, sellIn, quality);
   }
 
   updateItemQuality() {

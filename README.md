@@ -78,7 +78,7 @@ Choose [legacy code](https://github.com/emilybache/GildedRose-Refactoring-Kata) 
   * In an ideal world, these 2 private methods would exist in the parent class (Item), but due to the aforementioned restrictions, I believe they had to be duplicated across each subclass to ensure consistency in item properties.
 * I left adding the ConjuredItem subclass until I'd fully restructured the code and knew that it maintained original functionality and was working as intended. This allowed me to test first-hand how the process of adding item types to the application would go. I was satisfied with the resulting process and believe that it it an improvement over the legacy code.
 
-#### Original Shop class
+#### Original Shop class (prior to refactoring)
 ```
 class Shop {
   constructor(items=[]){
@@ -140,7 +140,7 @@ module.exports = {
 }
 ```
 
-#### Post refactoring
+#### New Shop class (post refactoring)
 ```
 const
   { NormalItem } = require('./normalItem'),
